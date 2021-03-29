@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScreenFoodViewController" customModule="Test" customModuleProvider="target">
+            <connections>
+                <outlet property="chartView" destination="VJl-eu-LAX" id="KTy-ly-PcS"/>
+                <outlet property="currentWeightView" destination="eTk-pN-cco" id="yTg-ej-dNC"/>
+                <outlet property="periodLabel" destination="781-EL-k0U" id="sfn-s7-0bC"/>
+                <outlet property="segmentedControl" destination="MdQ-UW-2xq" id="W3L-tn-Gwe"/>
+                <outlet property="startWeightView" destination="icz-3l-YOI" id="HYa-HI-PmF"/>
+                <outlet property="targetWeightView" destination="wfr-wl-JVe" id="MT5-Cq-oqv"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rkL-F7-Qa5">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="154" placeholderIntrinsicHeight="138" translatesAutoresizingMaskIntoConstraints="NO" id="icz-3l-YOI" userLabel="Start Weight View" customClass="WeightView" customModule="Test" customModuleProvider="target">
+                            <rect key="frame" x="130" y="0.0" width="154" height="138"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="154" placeholderIntrinsicHeight="138" translatesAutoresizingMaskIntoConstraints="NO" id="wfr-wl-JVe" userLabel="Target Weight View" customClass="WeightView" customModule="Test" customModuleProvider="target">
+                            <rect key="frame" x="15" y="201" width="154" height="138"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="154" placeholderIntrinsicHeight="138" translatesAutoresizingMaskIntoConstraints="NO" id="eTk-pN-cco" userLabel="Current Weight View" customClass="WeightView" customModule="Test" customModuleProvider="target">
+                            <rect key="frame" x="207" y="201" width="154" height="138"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJl-eu-LAX" customClass="ChartView" customModule="Test" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="524" width="414" height="290"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="290" id="44S-bx-FHY"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="781-EL-k0U">
+                            <rect key="frame" x="20" y="485" width="35.5" height="18"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="13"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MdQ-UW-2xq" customClass="AmazingSegmentedControl" customModule="Test" customModuleProvider="target">
+                            <rect key="frame" x="67" y="419" width="280" height="26"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="26" id="nde-r6-KB5"/>
+                                <constraint firstAttribute="width" constant="280" id="yDo-cw-egT"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="VJl-eu-LAX" firstAttribute="leading" secondItem="DYv-Ff-tXX" secondAttribute="leading" id="2AU-GE-wC9"/>
+                        <constraint firstItem="eTk-pN-cco" firstAttribute="centerY" secondItem="wfr-wl-JVe" secondAttribute="centerY" id="5dn-KJ-O37"/>
+                        <constraint firstItem="VJl-eu-LAX" firstAttribute="top" secondItem="781-EL-k0U" secondAttribute="bottom" constant="21" id="8q7-NH-dKJ"/>
+                        <constraint firstItem="icz-3l-YOI" firstAttribute="top" secondItem="rkL-F7-Qa5" secondAttribute="top" id="9PZ-Se-sFa"/>
+                        <constraint firstItem="781-EL-k0U" firstAttribute="top" secondItem="MdQ-UW-2xq" secondAttribute="bottom" constant="40" id="A4G-R7-yQx"/>
+                        <constraint firstItem="eTk-pN-cco" firstAttribute="centerX" secondItem="icz-3l-YOI" secondAttribute="trailing" priority="995" id="CzE-8O-do8"/>
+                        <constraint firstAttribute="trailing" secondItem="VJl-eu-LAX" secondAttribute="trailing" id="OVV-j4-bdC"/>
+                        <constraint firstItem="eTk-pN-cco" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wfr-wl-JVe" secondAttribute="trailing" constant="10" id="QHq-Lf-GJO"/>
+                        <constraint firstItem="icz-3l-YOI" firstAttribute="centerX" secondItem="rkL-F7-Qa5" secondAttribute="centerX" id="TxJ-gH-9v4"/>
+                        <constraint firstItem="wfr-wl-JVe" firstAttribute="top" secondItem="icz-3l-YOI" secondAttribute="bottom" constant="63" id="Wgx-rU-gev"/>
+                        <constraint firstItem="icz-3l-YOI" firstAttribute="centerX" secondItem="VJl-eu-LAX" secondAttribute="centerX" id="bUU-u8-yVr"/>
+                        <constraint firstItem="781-EL-k0U" firstAttribute="leading" secondItem="DYv-Ff-tXX" secondAttribute="leading" constant="20" id="cIU-aO-L2d"/>
+                        <constraint firstItem="wfr-wl-JVe" firstAttribute="leading" secondItem="DYv-Ff-tXX" secondAttribute="leading" constant="15" id="f8P-O4-Rne"/>
+                        <constraint firstAttribute="bottom" secondItem="VJl-eu-LAX" secondAttribute="bottom" id="hOq-gh-vVv"/>
+                        <constraint firstItem="MdQ-UW-2xq" firstAttribute="centerX" secondItem="VJl-eu-LAX" secondAttribute="centerX" id="m8p-og-eZV"/>
+                        <constraint firstItem="MdQ-UW-2xq" firstAttribute="top" secondItem="wfr-wl-JVe" secondAttribute="bottom" constant="80" id="oXt-DJ-TBT"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="DYv-Ff-tXX"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="EV1-CZ-IvC"/>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rkL-F7-Qa5" secondAttribute="bottom" id="Azy-60-5pA"/>
+                <constraint firstItem="VJl-eu-LAX" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="Org-Lq-Ydk"/>
+                <constraint firstItem="rkL-F7-Qa5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="WHb-ma-MJv"/>
+                <constraint firstItem="rkL-F7-Qa5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="h0z-Sj-LtQ"/>
+                <constraint firstItem="rkL-F7-Qa5" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="zQo-qm-XUT"/>
+            </constraints>
+            <point key="canvasLocation" x="118.84057971014494" y="114.50892857142857"/>
+        </view>
+    </objects>
+</document>
