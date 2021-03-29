@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeightView" customModule="Test" customModuleProvider="target">
             <connections>
+                <outlet property="leadingSubtitleConstraint" destination="VmH-kE-MxM" id="YRz-gf-qSL"/>
                 <outlet property="redoButton" destination="3b3-Mh-oSe" id="iqI-po-wbD"/>
                 <outlet property="subtitleLabel" destination="oon-ue-qnc" id="han-27-bmZ"/>
                 <outlet property="titleLabel" destination="Try-EY-Jr8" id="BUu-wY-MMy"/>
@@ -19,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oon-ue-qnc">
-                    <rect key="frame" x="44" y="32" width="156" height="38"/>
+                    <rect key="frame" x="10" y="32" width="41.5" height="38"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -33,7 +34,7 @@
                     <state key="normal" image="redoIcon"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Try-EY-Jr8">
-                    <rect key="frame" x="44" y="12" width="156" height="20"/>
+                    <rect key="frame" x="44" y="12" width="171" height="20"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -41,14 +42,14 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Try-EY-Jr8" secondAttribute="trailing" constant="15" id="0DD-vH-bDf"/>
-                <constraint firstItem="oon-ue-qnc" firstAttribute="width" secondItem="Try-EY-Jr8" secondAttribute="width" id="1D3-KQ-0Eg"/>
+                <constraint firstAttribute="trailing" secondItem="Try-EY-Jr8" secondAttribute="trailing" id="0DD-vH-bDf"/>
                 <constraint firstAttribute="bottom" secondItem="oon-ue-qnc" secondAttribute="bottom" constant="10" id="3uy-9n-Sz6"/>
                 <constraint firstItem="Try-EY-Jr8" firstAttribute="centerY" secondItem="3b3-Mh-oSe" secondAttribute="centerY" id="6ED-7v-uVV"/>
                 <constraint firstItem="3b3-Mh-oSe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Cng-GJ-Bq9"/>
                 <constraint firstItem="oon-ue-qnc" firstAttribute="top" secondItem="Try-EY-Jr8" secondAttribute="bottom" id="FGy-gb-U3Z"/>
                 <constraint firstItem="3b3-Mh-oSe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FlX-wf-irI"/>
-                <constraint firstItem="oon-ue-qnc" firstAttribute="leading" secondItem="Try-EY-Jr8" secondAttribute="leading" id="ZlJ-Tj-sP8"/>
+                <constraint firstItem="oon-ue-qnc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="VmH-kE-MxM"/>
+                <constraint firstItem="oon-ue-qnc" firstAttribute="leading" secondItem="Try-EY-Jr8" secondAttribute="leading" priority="999" id="ZlJ-Tj-sP8"/>
                 <constraint firstItem="Try-EY-Jr8" firstAttribute="leading" secondItem="3b3-Mh-oSe" secondAttribute="trailing" id="l2U-Ji-qzQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -26,6 +26,7 @@ class WeightView: UIView, NibOwnerLoadable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var redoButton: UIButton!
+    @IBOutlet private weak var leadingSubtitleConstraint: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
     
@@ -70,10 +71,12 @@ private extension WeightView {
             titleLabel.font = UIFont(name: "OpenSans-ExtraBold", size: 24)
             subtitleLabel.font = UIFont(name: "OpenSans-Light", size: 24)
             subtitleLabel.textColor = #colorLiteral(red: 0.6509803922, green: 0.6745098039, blue: 0.7450980392, alpha: 1)
+            leadingSubtitleConstraint.priority = UILayoutPriority(1000)
         case .sub:
             titleLabel.font = UIFont(name: "OpenSans-Bold", size: 24)
             subtitleLabel.font = UIFont(name: "OpenSans-Light", size: 13)
             subtitleLabel.textColor = .black
+            leadingSubtitleConstraint.priority = UILayoutPriority(999)
         }
     }
     
