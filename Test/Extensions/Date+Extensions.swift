@@ -51,12 +51,12 @@ extension Date {
         Date.dateDaysAgo(365)
     }
     func startOfMonth(using calendar: Calendar = .current) -> Date {
-//        Date.dateDaysAgo(31)
-        calendar.date(from: dateComponents([.year, .month], using: calendar))!
+        Date.dateDaysAgo(31)
+//        calendar.date(from: dateComponents([.year, .month], using: calendar))!
     }
     func startOfWeek(using calendar: Calendar = .current) -> Date {
-//        Date.dateDaysAgo(6)
-        calendar.date(from: dateComponents([.yearForWeekOfYear, .weekOfYear], using: calendar))!
+        Date.dateDaysAgo(6)
+//        calendar.date(from: dateComponents([.yearForWeekOfYear, .weekOfYear], using: calendar))!
     }
     var noon: Date {
         Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self)!

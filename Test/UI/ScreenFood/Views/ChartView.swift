@@ -55,8 +55,13 @@ class ChartView: UIView {
             }
             result.append(coordinates)
         }
+        if let firtst = points.first {
+            let y = firtst.y - 5
+            points = [CGPoint(x: -5, y: y)] + points
+        }
         let y = unitY(value: chartData.target.value)
         points.append(.init(x: bounds.width - 10.0, y: y))
+        points.append(.init(x: bounds.width + 5, y: y + 5))
         
         drawLines(chartData.chartLines)
         drawPath(points: points)
@@ -88,126 +93,77 @@ private extension ChartView {
             return
         }
         let context = UIGraphicsGetCurrentContext()
+        context?.saveGState()
+
+        var cp1: CGPoint = .zero
+        var cp2: CGPoint = .zero
+        var p0: CGPoint = .zero
+        var p1: CGPoint = .zero
+        var p2: CGPoint = .zero
+        var p3: CGPoint = .zero
+
+        var tensionBezier1: CGFloat = 0.3
+        var tensionBezier2: CGFloat = 0.3
+
+        var previousPoint1: CGPoint = .zero
+        
+        context?.setLineWidth(3)
+        context?.setLineJoin(.round)
+        context?.move(to: points[0])
+
+        let count = points.count - 2
+        for index in 0...count {
+            p1 = points[index]
+            p2 = points[index + 1]
+            let maxTension: CGFloat = 0.2
+            tensionBezier1 = maxTension
+            tensionBezier2 = maxTension
+            if index == 0 || index == points.count - 2 {
+                tensionBezier1 = 0
+                p0 = p1
+            } else {
+                p0 = previousPoint1
+                if p2.y - p1.y == p1.y - p0.y {
+                    tensionBezier1 = 0
+                }
+            }
+            if index < points.count - 2 {
+                p3 = points[index + 2]
+                if p3.y - p2.y == p2.y - p1.y {
+                    tensionBezier2 = 0
+                }
+            } else {
+                p3 = p2
+                tensionBezier2 = 0
+            }
+
+            if tensionBezier1 > maxTension {
+                tensionBezier1 = maxTension
+            }
+            if tensionBezier2 > maxTension {
+                tensionBezier2 = maxTension
+            }
+
+            cp1 = .init(x: p1.x + (p2.x - p1.x)/3,
+                        y: p1.y - (p1.y - p2.y)/3 - (p0.y - p1.y)*tensionBezier1)
+
+            cp2 = .init(x: p1.x + 2*(p2.x - p1.x)/3,
+                        y: (p1.y - 2*(p1.y - p2.y)/3) + (p2.y - p3.y)*tensionBezier2)
+            context?.addCurve(to: p2, control1: cp1, control2: cp2)
+            previousPoint1 = p1
+        }
+        context?.replacePathWithStrokedPath()
+        context?.clip()
         let gradient = CGGradient(colorsSpace: nil,
                                   colors: [Color.gradientColor1.cgColor,
                                            Color.gradientColor2.cgColor] as CFArray,
                                   locations: [0.0, 1.0])
-        context?.saveGState()
-        context?.setLineWidth(3)
-        context?.setLineJoin(.round)
-        context?.addLines(between: points)
-        context?.replacePathWithStrokedPath()
-        context?.clip()
         context?.drawLinearGradient(gradient!,
-                                    start: CGPoint(x: chartFrame.midX, y: chartFrame.minY),
-                                    end: CGPoint(x: chartFrame.midX, y: chartFrame.maxY),
+                                    start: CGPoint(x: chartFrame.midX, y: chartFrame.minY - 10),
+                                    end: CGPoint(x: chartFrame.midX, y: chartFrame.maxY + 10),
                                     options: .drawsAfterEndLocation)
         context?.restoreGState()
     }
-    
-//    func drawPath(units: [ChartUnit]) {
-//        guard !units.isEmpty else {
-//            return
-//        }
-//        let context = UIGraphicsGetCurrentContext()
-//        context?.saveGState()
-//
-//        let points = units.enumerated().reduce(into: [CGPoint]()) { result, enumerated in
-//            guard let coordinates = unitCoordinates(for: enumerated.element, at: enumerated.offset) else {
-//                return
-//            }
-//            result.append(coordinates)
-//        }
-//        let path = UIBezierPath()
-//        var cp1: CGPoint = .zero
-//        var cp2: CGPoint = .zero
-//        var p0: CGPoint = .zero
-//        var p1: CGPoint = .zero
-//        var p2: CGPoint = .zero
-//        var p3: CGPoint = .zero
-//
-//        var tensionBezier1: CGFloat = 0.3
-//        var tensionBezier2: CGFloat = 0.3
-//
-//        var previousPoint1: CGPoint = .zero
-//        var previousPoint2: CGPoint = .zero
-//
-//        path.move(to: points[0])
-//
-//        let count = points.count - 2
-//        for index in 0...count {
-//            p1 = points[index]
-//            p2 = points[index + 1]
-//            let maxTension: CGFloat = 1.0 / 3.0
-//            tensionBezier1 = maxTension
-//            tensionBezier2 = maxTension
-//            if index == 0 {
-//                tensionBezier1 = 0
-//                p0 = p1
-//            } else {
-//                p0 = previousPoint1
-//                if p2.y - p1.y == p1.y - p0.y {
-//                    tensionBezier1 = 0
-//                }
-//            }
-//            if index < points.count - 2 {
-//                p3 = points[index + 2]
-//                if p3.y - p2.y == p2.y - p1.y {
-//                    tensionBezier2 = 0
-//                }
-//            } else {
-//                p3 = p2
-//                tensionBezier2 = 0
-//            }
-//
-//            if tensionBezier1 > maxTension {
-//                tensionBezier1 = maxTension
-//            }
-//            if tensionBezier2 > maxTension {
-//                tensionBezier2 = maxTension
-//            }
-//
-//            cp1 = .init(x: p1.x + (p2.x - p1.x)/3,
-//                        y: p1.y - (p1.y - p2.y)/3 - (p0.y - p1.y)*tensionBezier1)
-//
-//            cp2 = .init(x: p1.x + 2*(p2.x - p1.x)/3,
-//                        y: (p1.y - 2*(p1.y - p2.y)/3) + (p2.y - p3.y)*tensionBezier2)
-//            path.addCurve(to: p2, controlPoint1: cp1, controlPoint2: cp2)
-//
-//            previousPoint1 = p1
-//            previousPoint2 = p2
-//        }
-//        let curveLayer = CAShapeLayer()
-//        curveLayer.contentsScale = UIScreen.main.scale
-//        curveLayer.frame = bounds
-//        curveLayer.fillColor = UIColor.red.cgColor
-//        curveLayer.strokeColor = UIColor.blue.cgColor
-//        curveLayer.path = path.cgPath
-//        let gradientMask = CAShapeLayer()
-//        gradientMask.contentsScale = UIScreen.main.scale
-//        gradientMask.strokeColor = UIColor.white.cgColor
-//        gradientMask.path = path.cgPath
-//
-//        let gradientLayer = CAGradientLayer()
-//        gradientLayer.mask = gradientMask
-//        gradientLayer.frame = curveLayer.frame
-//        gradientLayer.contentsScale = UIScreen.main.scale
-//        gradientLayer.colors = [Color.gradientColor1.cgColor, Color.gradientColor2.cgColor]
-//        curveLayer.addSublayer(gradientLayer)
-//        layer.addSublayer(curveLayer)
-//        context?.restoreGState()
-//        context?.setFillColor(UIColor.black.cgColor)
-//
-//        points.forEach { point in
-//            context?.move(to: point)
-//
-//            let drawPoint = CGPoint(x: point.x - 1, y: point.y - 1)
-//            context?.drawPath(using: .stroke)
-//            context?.fillEllipse(in: .init(origin: drawPoint,
-//                                           size: .init(width: 3.0, height: 3.0)))
-//            context?.strokePath()
-//        }
-//    }
     
     func drawLines(_ lines: [ChartLine]) {
         lines.forEach { drawStrokeLine($0, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.5088610112))}
