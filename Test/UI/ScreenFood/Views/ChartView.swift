@@ -12,7 +12,7 @@ import RxCocoa
 class ChartView: UIView {
     private struct Color {
         static let gradientColor1 = UIColor(red: CGFloat(171)/255, green: CGFloat(119)/255, blue: 1, alpha: 1)
-        static let gradientColor2 = UIColor(red: CGFloat(148)/255, green: CGFloat(245)/255, blue: 1, alpha: 1)
+        static let gradientColor2 = UIColor(red: CGFloat(148)/255, green: CGFloat(245)/255, blue: CGFloat(222)/255, alpha: 1)
     }
     struct ChartUnit {
         let title1: String?
