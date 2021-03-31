@@ -11,8 +11,8 @@ import RxCocoa
 
 class ChartView: UIView {
     private struct Color {
-        static let gradientColor1 = UIColor(red: CGFloat(171)/255, green: CGFloat(119)/255, blue: 1, alpha: 1)
-        static let gradientColor2 = UIColor(red: CGFloat(148)/255, green: CGFloat(245)/255, blue: CGFloat(222)/255, alpha: 1)
+        static let gradientColor1: UIColor = #colorLiteral(red: 0.6686803699, green: 0.464756906, blue: 1, alpha: 1)
+        static let gradientColor2: UIColor = #colorLiteral(red: 0.5787941813, green: 0.9618671536, blue: 0.8687822223, alpha: 1)
     }
     struct ChartUnit {
         let title1: String?
@@ -56,8 +56,8 @@ class ChartView: UIView {
             result.append(coordinates)
         }
         if let firtst = points.first {
-            let y = firtst.y - 5
-            points = [CGPoint(x: -5, y: y)] + points
+            let y = firtst.y - 20
+            points = [CGPoint(x: -20, y: y)] + points
         }
         let y = unitY(value: chartData.target.value)
         points.append(.init(x: bounds.width - 10.0, y: y))
@@ -94,74 +94,24 @@ private extension ChartView {
         }
         let context = UIGraphicsGetCurrentContext()
         context?.saveGState()
-
-        var cp1: CGPoint = .zero
-        var cp2: CGPoint = .zero
-        var p0: CGPoint = .zero
-        var p1: CGPoint = .zero
-        var p2: CGPoint = .zero
-        var p3: CGPoint = .zero
-
-        var tensionBezier1: CGFloat = 0.3
-        var tensionBezier2: CGFloat = 0.3
-
-        var previousPoint1: CGPoint = .zero
         
-        context?.setLineWidth(3)
+        let path = UIBezierPath.from(points).cgPath
+        context?.setLineWidth(3.0)
         context?.setLineJoin(.round)
-        context?.move(to: points[0])
-
-        let count = points.count - 2
-        for index in 0...count {
-            p1 = points[index]
-            p2 = points[index + 1]
-            let maxTension: CGFloat = 0.2
-            tensionBezier1 = maxTension
-            tensionBezier2 = maxTension
-            if index == 0 || index == points.count - 2 {
-                tensionBezier1 = 0
-                p0 = p1
-            } else {
-                p0 = previousPoint1
-                if p2.y - p1.y == p1.y - p0.y {
-                    tensionBezier1 = 0
-                }
-            }
-            if index < points.count - 2 {
-                p3 = points[index + 2]
-                if p3.y - p2.y == p2.y - p1.y {
-                    tensionBezier2 = 0
-                }
-            } else {
-                p3 = p2
-                tensionBezier2 = 0
-            }
-
-            if tensionBezier1 > maxTension {
-                tensionBezier1 = maxTension
-            }
-            if tensionBezier2 > maxTension {
-                tensionBezier2 = maxTension
-            }
-
-            cp1 = .init(x: p1.x + (p2.x - p1.x)/3,
-                        y: p1.y - (p1.y - p2.y)/3 - (p0.y - p1.y)*tensionBezier1)
-
-            cp2 = .init(x: p1.x + 2*(p2.x - p1.x)/3,
-                        y: (p1.y - 2*(p1.y - p2.y)/3) + (p2.y - p3.y)*tensionBezier2)
-            context?.addCurve(to: p2, control1: cp1, control2: cp2)
-            previousPoint1 = p1
-        }
+        context?.addPath(path)
         context?.replacePathWithStrokedPath()
         context?.clip()
         let gradient = CGGradient(colorsSpace: nil,
                                   colors: [Color.gradientColor1.cgColor,
                                            Color.gradientColor2.cgColor] as CFArray,
                                   locations: [0.0, 1.0])
-        context?.drawLinearGradient(gradient!,
-                                    start: CGPoint(x: chartFrame.midX, y: chartFrame.minY - 10),
-                                    end: CGPoint(x: chartFrame.midX, y: chartFrame.maxY + 10),
-                                    options: .drawsAfterEndLocation)
+        let sortedPoints = points.sorted(by: { $0.y < $1.y })
+        if let start = sortedPoints.first?.y, let end = sortedPoints.last?.y {
+            context?.drawLinearGradient(gradient!,
+                                        start: CGPoint(x: chartFrame.midX, y: start),
+                                        end: CGPoint(x: chartFrame.midX, y: end),
+                                        options: .drawsBeforeStartLocation)
+        }
         context?.restoreGState()
     }
     
@@ -261,8 +211,8 @@ private extension ChartView {
         guard let units = chartData.value?.chartUnits else {
             return 0.0
         }
-        let offsetLeft: CGFloat = 20.0
-        let offsetRight: CGFloat = 40.0
+        let offsetLeft: CGFloat = 33.0
+        let offsetRight: CGFloat = 50.0
         return (chartFrame.width - offsetLeft - offsetRight)/CGFloat(units.count - 1) * CGFloat(index) + offsetLeft
     }
     

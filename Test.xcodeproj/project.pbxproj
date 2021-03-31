@@ -36,6 +36,7 @@
 		CA9215A0260FD92E00BE8686 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA92159F260FD92E00BE8686 /* Date+Extensions.swift */; };
 		CA9215C626106D8800BE8686 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9215C426106D8800BE8686 /* StartViewController.swift */; };
 		CA9215C726106D8800BE8686 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9215C526106D8800BE8686 /* StartViewController.xib */; };
+		CAA7F5DB261506D000676189 /* UIBeziePath+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7F5DA261506D000676189 /* UIBeziePath+Extensions.swift */; };
 		CAB74FCF260694E300138633 /* WeightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB74FCE260694E300138633 /* WeightView.xib */; };
 		DB2D927CE96A170F2C369F28 /* Pods_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B94364EE2576E194558772A /* Pods_Test.framework */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		CA92159F260FD92E00BE8686 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		CA9215C426106D8800BE8686 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		CA9215C526106D8800BE8686 /* StartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
+		CAA7F5DA261506D000676189 /* UIBeziePath+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBeziePath+Extensions.swift"; sourceTree = "<group>"; };
 		CAB74FCE260694E300138633 /* WeightView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeightView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				CA92159F260FD92E00BE8686 /* Date+Extensions.swift */,
+				CAA7F5DA261506D000676189 /* UIBeziePath+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				CA1588A52606A48E0090D455 /* ScreenFoodViewModel.swift in Sources */,
 				CA9215C626106D8800BE8686 /* StartViewController.swift in Sources */,
 				CA9214FF26077B2100BE8686 /* RandomWeightDataSource.swift in Sources */,
+				CAA7F5DB261506D000676189 /* UIBeziePath+Extensions.swift in Sources */,
 				CA921597260FA47B00BE8686 /* HealthKitDataSource.swift in Sources */,
 				CA1588B12606B2320090D455 /* ScreenFoodViewModelType.swift in Sources */,
 				CA0BB2B12606756B00A72554 /* ScreenFoodViewController.swift in Sources */,
@@ -537,6 +541,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49F3S37APN;
 				INFOPLIST_FILE = Test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -558,6 +563,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49F3S37APN;
 				INFOPLIST_FILE = Test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

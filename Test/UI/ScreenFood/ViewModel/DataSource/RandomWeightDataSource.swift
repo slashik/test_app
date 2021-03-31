@@ -63,7 +63,7 @@ private extension RandomWeightDataSource {
         let weights: [DailyWeight] = [.init(date: startDate, weight: startWeight)]
         var latestWeight = startWeight
         var dailyWeights = (1...149).reversed().reduce(into: weights) { result, dayIndex in
-            var weight = Double.random(in: -1.1...1) + latestWeight
+            var weight = Double.random(in: -0.52...0.5) + latestWeight
         
             if let minWeightForSeed = targetWeight.value, weight < minWeightForSeed {
                 weight = minWeightForSeed

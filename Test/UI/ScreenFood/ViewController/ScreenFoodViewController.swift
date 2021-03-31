@@ -117,7 +117,7 @@ private extension ScreenFoodViewController {
                     textField.rx
                         .controlEvent(.editingDidEnd)
                         .bind { _ in
-                            if let text = textField.text, !text.isEmpty {
+                            if let text = textField.text?.replacingOccurrences(of: ",", with: "."), !text.isEmpty {
                                 relay.onNext(Double(text))
                             }
                         }
