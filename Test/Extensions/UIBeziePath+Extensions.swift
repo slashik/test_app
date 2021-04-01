@@ -31,10 +31,10 @@ extension UIBezierPath {
             let absY = abs(diffY)
             var tensionX: CGFloat = 0.13
             var tensionY: CGFloat = 0.13
-            if absX > 100, absY > 10 {
+            if absX > 100, absY > 5 {
                 tensionX = 0.2
             }
-            if absY > 100, absX > 10 {
+            if absY > 100, absX > 5 {
                 tensionY = 0.2
             }
             
